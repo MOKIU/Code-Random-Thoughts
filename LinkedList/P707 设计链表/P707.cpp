@@ -34,92 +34,143 @@ public:
         {
             return -1;
         }
-        for (int i = 0; i < this->size; i++)
+        // 简化代码,避免冗余遍历
+        for (int i = 0; i < index; i++)
         {
-            if (index == i)
-            {
-                return p->val;
-            }
-            else
-            {
-                p = p->next;
-            }
+            p = p->next;
         }
-        return -1;
+        return p->val;
+        // for (int i = 0; i < this->size; i++)
+        // {
+        // if (index == i)
+        // {
+        // return p->val;
+        // }
+        // else
+        // {
+        // p = p->next;
+        // }
+        // }
     }
     // 在链表头部添加一个节点
     void addAtHead(int val)
     {
-        if (this->size == 0)
-        {
-            this->head->next->val = val;
-            this->size++;
-        }
-        else
-        {
-            LinkedNode* p = new LinkedNode(val);
-            p->next = head->next;
-            head->next = p;
-            this->size++;
-        }
+        // if (this->size == 0)
+        // {
+        // // 使用虚拟头节点,不原地修改,下面写法会有空指针错误
+        // // this->head->next->val = val;
+        // this->size++;
+        // }
+        // else
+        // {
+        // LinkedNode* p = new LinkedNode(val);
+        // p->next = head->next;
+        // head->next = p;
+        // this->size++;
+        // }
+        // 使用虚拟头节点后,就不用特殊判断了,同意都放在虚拟头节点之后
+        LinkedNode* p = new LinkedNode(val);
+        p->next = this->head->next;
+        this->head->next = p;
+        this->size++;
     }
     // 在链表尾部添加添加一个节点
     void addAtTail(int val)
     {
-        if (this->size == 0)
+        // if (this->size == 0)
+        // {
+        // this->head->next->val = val;
+        // this->size++;
+        // }
+        // else
+        // {
+        // LinkedNode* p = new LinkedNode(val);
+        // LinkedNode* q = head->next;
+        // for (int i = 0; i < this->size; i++)
+        // {
+        // q = q->next;
+        // }
+        // q->next = p;
+        // }
+        // 同样无需特殊判断,只需要让一个指针指向head,然后根据size遍历到尾部添加节点即可
+        LinkedNode* p = this->head;
+        LinkedNode* q = new LinkedNode(val);
+        for (int i = 0; i < this->size; i++)
         {
-            this->head->next->val = val;
-            this->size++;
+            p = p->next;
         }
-        else
-        {
-            LinkedNode* p = new LinkedNode(val);
-            LinkedNode* q = head->next;
-            for (int i = 0; i < this->size; i++)
-            {
-                q = q->next;
-            }
-            q->next = p;
-        }
+        p->next = q;
+        this->size++;
     }
     // 在链表特定位置添加节点
     void addAtIndex(int index, int val)
     {
+        // //
         // 实现思路:首先一个指针指向头节点,然后根据index遍历该指针到特定位置,再用另一个指针保存下一个节点的位置,然后连接节点
-        LinkedNode* p = head->next;
-        int count = index;
-        while (count--)
-        {
-            p = p->next;
-        }
-        // 判断插入位置是否会超出链表范围
+        // LinkedNode* p = head->next;
+        // int count = index;
+        // while (count--)
+        // {
+        // p = p->next;
+        // }
+        // // 判断插入位置是否会超出链表范围
+        // if (index <= this->size)
+        // {
+        // LinkedNode* q = p->next;
+        // LinkedNode* k = new LinkedNode(val);
+        // p->next = k;
+        // k->next = q;
+        // this->size++;
+        // }
         if (index <= this->size)
         {
-            LinkedNode* q = p->next;
-            LinkedNode* k = new LinkedNode(val);
-            p->next = k;
-            k->next = q;
+            LinkedNode* q = new LinkedNode(val);
+            LinkedNode* p = head;
+            while (index--)
+            {
+                p = p->next;
+            }
+            q->next = p->next;
+            p->next = q;
             this->size++;
         }
     }
     // 删除链表特定位置节点
     void deleteAtIndex(int index)
     {
+        // //
         // 实现思路:首先判断删除的是否是第一个节点,如果是将要修改头指针的位置,否则需要遍历指针到待删除的节点再删除
-        if (index == 0)
+        // if (index == 0)
+        // {
+        // this->head->next = this->head->next->next;
+        // }
+        // else
+        // {
+        // LinkedNode* p = head->next;
+        // LinkedNode* q = head;
+        // while (index--)
+        // {
+        // p = p->next;
+        // q = q->next;
+        // }
+        // q->next = p->next;
+        // }
+        if (index < this->size)
         {
-            this->head->next = this->head->next->next;
-        }
-        else
-        {
-            LinkedNode* p = head->next;
-            LinkedNode* q = head;
-            while (index--)
+            LinkedNode* p = head;
+            if (this->size == 1)
             {
-                p = p->next;
-                q = q->next;
+                p->next = nullptr;
             }
-            q->next = p->next;
+            else
+            {
+                while (index--)
+                {
+                    p = p->next;
+                }
+                p->next = p->next->next;
+            }
+            this->size--;
         }
     }
 } 
