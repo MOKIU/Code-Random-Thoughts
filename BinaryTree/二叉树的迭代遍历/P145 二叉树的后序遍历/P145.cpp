@@ -15,7 +15,7 @@ struct TreeNode
 
 vector<int> preorderTraversal(TreeNode* root)
 {
-	// 在前序遍历的基础上修改,由中左右变为右左中的逆置
+        // 在前序遍历的基础上修改,由中左右变为右左中的逆置
     stack<TreeNode*> st;
     vector<int> res;
     if (root == nullptr) return res;
