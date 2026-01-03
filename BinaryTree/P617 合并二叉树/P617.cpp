@@ -9,7 +9,7 @@ struct TreeNode
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right)
-        : val(x), left(left), right(right);
+        : val(x), left(left), right(right){}
 };
 TreeNode* traversal(TreeNode*& cur1, TreeNode*& cur2){
 	if(cur1 == nullptr)return cur2;

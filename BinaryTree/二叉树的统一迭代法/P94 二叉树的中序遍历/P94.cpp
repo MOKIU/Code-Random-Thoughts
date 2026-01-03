@@ -9,7 +9,7 @@ struct TreeNode
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right)
-        : val(x), left(left), right(right);
+        : val(x), left(left), right(right){}
 };
 // 放入栈的顺序是放入结果集的倒序
 // 先放右节点,再放中节点,然后放空指针,最后放左节点
