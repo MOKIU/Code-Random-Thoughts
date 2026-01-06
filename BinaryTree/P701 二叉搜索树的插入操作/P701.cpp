@@ -1,31 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TreeNode{
-	int val;
-	TreeNode* left;
-	TreeNode* right;
-	TreeNode():val(0), left(nullptr), right(nullptr){}
-	TreeNode(int x):val(x), left(nullptr), right(nullptr){}
-	TreeNode(int x, TreeNode* left, TreeNode* right):val(x), left(left), right(right){}
+struct TreeNode
+{
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right)
+        : val(x), left(left), right(right)
+    {
+    }
 };
-TreeNode* insertIntoBST(TreeNode* root, int val){
-	if(root == nullptr){
-		TreeNode* node = new TreeNode(val);
-		return node;
-	}
-	TreeNode* cur = root;
-	TreeNode* parent = root;
-	while(cur){
-		parent = cur;
-		if(cur->val > val)cur = cur->left;
-		else cur = cur->right;
-	}
-	TreeNode* node = new TreeNode(val);
-	if(val < parent->val)parent->left = node;
-	else parent->right = node;
-	return root;
+TreeNode* insertIntoBST(TreeNode* root, int val)
+{
+    if (root == nullptr)
+    {
+        TreeNode* node = new TreeNode(val);
+        return node;
+    }
+    TreeNode* cur = root;
+    TreeNode* parent = root;
+    while (cur)
+    {
+        parent = cur;
+        if (cur->val > val)
+            cur = cur->left;
+        else
+            cur = cur->right;
+    }
+    TreeNode* node = new TreeNode(val);
+    if (val < parent->val)
+        parent->left = node;
+    else
+        parent->right = node;
+    return root;
 }
-int main(){
-	return 0;
+int main()
+{
+    return 0;
 }
