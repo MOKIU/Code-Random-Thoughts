@@ -9,25 +9,31 @@ struct TreeNode
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right)
-        : val(x), left(left), right(right){}
+        : val(x), left(left), right(right)
+    {
+    }
 };
-TreeNode* trimBST(TreeNode* root, int low, int high){
-	if(root == nullptr)return root;
-	// 先序遍历
-	if(root->val < low){
-		TreeNode* right = trimBST(root->right, low, high);
-		return right;
-	}
-	if(root->val > high){
-		TreeNode* left = trimBST(root->left, low, high);
-		return left;
-	}
-	// 左
-	root->left = trimBST(root->left, low, high);
-	// 右
-	root->right = trimBST(root->right, low, high);
-	return root;
+TreeNode* trimBST(TreeNode* root, int low, int high)
+{
+    if (root == nullptr) return root;
+        // 先序遍历
+    if (root->val < low)
+    {
+        TreeNode* right = trimBST(root->right, low, high);
+        return right;
+    }
+    if (root->val > high)
+    {
+        TreeNode* left = trimBST(root->left, low, high);
+        return left;
+    }
+        // 左
+    root->left = trimBST(root->left, low, high);
+        // 右
+    root->right = trimBST(root->right, low, high);
+    return root;
 }
-int main(){
-	return 0;
+int main()
+{
+    return 0;
 }
