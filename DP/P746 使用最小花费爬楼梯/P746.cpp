@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int minCostClimbingStairs(vector<int>& cost){
+	int n = cost.size();
+	vector<int> dp(n+1); // 下标含义：跳到下标i的台阶需要最小花费为dp[i]
+	dp[0] = 0;
+	dp[1] = 0;
+	for(int i = 2;i <= n;i++){
+		dp[i] = min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2]);
+	}
+	return dp[n];
+}
+int main(){
+	return 0;
+}AA
