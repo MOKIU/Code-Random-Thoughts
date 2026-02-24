@@ -1,4 +1,4 @@
-#include <bit/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 vector<int> dailyTemperatures(vector<int>& temperatures){
