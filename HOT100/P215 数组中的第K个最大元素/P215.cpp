@@ -1,4 +1,4 @@
-#include <bit/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // 参数列表的k:要找的下标为k的元素
