@@ -1,4 +1,4 @@
-#include <bit/stddc++.h>
+#include <bits/stddc++.h>
 using namespace std;
 
 // 01背包问题,只不过重量有两个维度(m,n)
